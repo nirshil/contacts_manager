@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'No contacts',
+                                  'No contact',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 30),
                                 ),

@@ -19,7 +19,7 @@ class ContactTileWidget extends StatelessWidget {
       onTap: onTap,
       tileColor: ColorConstants.appbg,
       leading: SizedBox(
-        width: 50, // Specify a fixed width
+        width: 50, // Specillllfy a fixed width
         height: 50, // Specify a fixed height
         child: ClipRRect(
             borderRadius: BorderRadius.circular(
