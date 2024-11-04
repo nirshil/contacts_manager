@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1082347619289",
+    "project_id": "maitexa-15249",
+    "storage_bucket": "maitexa-15249.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082347619289:android:203e782ae819b685284fc8",
+        "android_client_info": {
+          "package_name": "com.example.contacts_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArRTdpgPhk5xKotevZF16JriRaw5U06Gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

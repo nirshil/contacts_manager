@@ -1,11 +1,18 @@
+import 'package:contacts_manager/firebase_options.dart';
 import 'package:contacts_manager/screens/addOrEditContactPage.dart';
 import 'package:contacts_manager/screens/homePage.dart';
+import 'package:contacts_manager/screens/signupPage.dart';
 import 'package:contacts_manager/services/dbDatabase.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DbDatabase().initDatabase();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -22,6 +29,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage());
+        home: SignupPage());
   }
 }

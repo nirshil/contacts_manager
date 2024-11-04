@@ -1,6 +1,7 @@
 import 'package:contacts_manager/modal/contactModel.dart';
 import 'package:contacts_manager/screens/addOrEditContactPage.dart';
 import 'package:contacts_manager/screens/contactDetailPage.dart';
+import 'package:contacts_manager/screens/profilePage.dart';
 import 'package:contacts_manager/services/dbDatabase.dart';
 import 'package:contacts_manager/utilis/assetImageConstant.dart';
 import 'package:contacts_manager/utilis/colorConstants.dart';
@@ -8,7 +9,7 @@ import 'package:contacts_manager/utilis/textConstants.dart';
 import 'package:contacts_manager/widgets/appHeadings.dart';
 import 'package:contacts_manager/widgets/appTextField.dart';
 import 'package:contacts_manager/widgets/contactTileWidget.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -52,7 +53,28 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppHeadings(text: TextConstants.mainHeading),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppHeadings(text: TextConstants.mainHeading),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()));
+                  },
+                  child: Container(
+                    width: 70,
+                    height: 70,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                AssetImageConstants().defaultProfile)),
+                        borderRadius: BorderRadius.circular(50),
+                        color: const Color.fromARGB(255, 70, 70, 70)),
+                  ),
+                )
+              ],
+            ),
             searchBar(
               context,
             ),
@@ -101,23 +123,26 @@ class _HomePageState extends State<HomePage> {
                                 return Column(
                                   children: [
                                     ContactTileWidget(
-                                        onTap: () async {
-                                          await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ContactDetailPage(
-                                                        index: index,
-                                                      )));
-                                          getContacts();
-                                        },
-                                        image: contacts![index].image == null
-                                            ? Image.asset(AssetImageConstants()
-                                                .defaultProfile)
-                                            : Image.memory(
-                                                contacts![index].image!),
-                                        name: contacts![index].name,
-                                        number: contacts![index].phoneNumber),
+                                      onTap: () async {
+                                        await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ContactDetailPage(
+                                                      index: index,
+                                                    )));
+                                        getContacts();
+                                      },
+                                      image: contacts![index].image == null
+                                          ? Image.asset(AssetImageConstants()
+                                              .defaultProfile)
+                                          : Image.memory(
+                                              contacts![index].image!,
+                                              fit: BoxFit.contain,
+                                            ),
+                                      name: contacts![index].name,
+                                      number: contacts![index].phoneNumber,
+                                    ),
                                     horizDivider
                                   ],
                                 );
@@ -136,11 +161,16 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white, fontSize: 30),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
+                                  onPressed: () {
+                                    setState(() {
+                                      searchController.clear();
+                                      searchValue = '';
+                                    });
+                                  },
+                                  child: const Text(
                                     'Exit',
                                     style: TextStyle(
-                                        color: ColorConstants.appdivider,
+                                        color: ColorConstants.appdark,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   style: ButtonStyle(
